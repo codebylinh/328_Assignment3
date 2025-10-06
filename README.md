@@ -1,4 +1,4 @@
-## 🧠 Assignment 3 – CNNs for Image Classification (CIFAR-10)
+## Assignment 3 – CNNs for Image Classification (CIFAR-10)
 
 **Course**: CMPUT 328 — Visual Recognition  
 **Student**: Linh (`<lvle>`)  
