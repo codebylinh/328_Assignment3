@@ -38,25 +38,8 @@ use_gpu = torch.cuda.is_available()
 
 ## 🔁 Reproducibility Settings
 
-Set these seeds before data loading and model initialization:
-```python
-import torch, random, numpy as np
-torch.manual_seed(328)
-random.seed(328)
-np.random.seed(328)
 
-# For DataLoader
-from torch.utils.data import DataLoader
-g = torch.Generator()
-g.manual_seed(328)
-
-train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True, generator=g)
-
-# For deterministic behavior
-torch.backends.cudnn.deterministic = True
-torch.backends.cudnn.benchmark = False
-```
-
+We fix `seed=42`, use a `45k/5k/10k` split, and train **SmallCNN** for **40 epochs** with **AdamW** (`lr=1e-3`, `wd=5e-4`), a cosine LR schedule, and batch size **256**. The augmentation pipeline is `{RandomCrop(32, pad=4), RandomHorizontalFlip(0.5), ColorJitter (mild), RandomErasing (small)}`. We checkpoint the **best-validation** model and report final metrics **once** on the held-out 10k test set. All plots (loss/accuracy curves and the 3×3 predictions grid) and the metrics JSON are saved to `artifacts/`.
 ---
 
 ## 📂 Folder Structure
@@ -85,8 +68,6 @@ A3_CNN_<CCID>.zip/
 
 ---
 
-## 📌 Notes for Reproducibility
 
-We fix `seed=42`, use a `45k/5k/10k` split, and train **SmallCNN** for **15 epochs** with **AdamW** (`lr=1e-3`, `wd=5e-4`), a cosine LR schedule, and batch size **256**. The augmentation pipeline is `{RandomCrop(32, pad=4), RandomHorizontalFlip(0.5), ColorJitter (mild), RandomErasing (small)}`. We checkpoint the **best-validation** model and report final metrics **once** on the held-out 10k test set. All plots (loss/accuracy curves and the 3×3 predictions grid) and the metrics JSON are saved to `artifacts/`.
 
 
